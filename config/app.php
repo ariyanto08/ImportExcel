@@ -1,33 +1,6 @@
 <?php
 
-use App\Providers\AppServiceProvider;
-use Illuminate\Bus\BusServiceProvider;
 use Illuminate\Support\Facades\Facade;
-use App\Providers\EventServiceProvider;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Auth\AuthServiceProvider;
-use Illuminate\Mail\MailServiceProvider;
-use Illuminate\View\ViewServiceProvider;
-use Illuminate\Cache\CacheServiceProvider;
-use Illuminate\Queue\QueueServiceProvider;
-use Illuminate\Redis\RedisServiceProvider;
-use Illuminate\Hashing\HashServiceProvider;
-use Maatwebsite\Excel\ExcelServiceProvider;
-use Illuminate\Cookie\CookieServiceProvider;
-use Illuminate\Session\SessionServiceProvider;
-use Illuminate\Database\DatabaseServiceProvider;
-use Illuminate\Pipeline\PipelineServiceProvider;
-use Illuminate\Encryption\EncryptionServiceProvider;
-use Illuminate\Filesystem\FilesystemServiceProvider;
-use Illuminate\Pagination\PaginationServiceProvider;
-use Illuminate\Validation\ValidationServiceProvider;
-use Illuminate\Broadcasting\BroadcastServiceProvider;
-use Illuminate\Translation\TranslationServiceProvider;
-use Illuminate\Notifications\NotificationServiceProvider;
-use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
-use Illuminate\Foundation\Providers\FoundationServiceProvider;
-use Illuminate\Foundation\Providers\ConsoleSupportServiceProvider;
 
 return [
 
@@ -181,7 +154,11 @@ return [
     |
     */
 
-    'providers' => ServiceProvider::defaultProviders()->merge([
+    'providers' => [
+
+        /*
+         * Laravel Framework Service Providers...
+         */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -204,10 +181,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -216,7 +195,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-    ])->toArray(),
+
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -230,7 +210,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        // 'ExampleClass' => App\Example\ExampleClass::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 

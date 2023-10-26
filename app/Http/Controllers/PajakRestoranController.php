@@ -3,21 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Imports\RestoranImport;
 use App\Http\Controllers\Controller;
-use App\Imports\PajakRestoranImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
 class PajakRestoranController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
+    function index(){
+        return view('restoran.index');
     }
-
     function __invoke(Request $request)
     {
         $this->validate($request, [
@@ -26,59 +21,10 @@ class PajakRestoranController extends Controller
         $file = $request->file('file');
         $nama_file = $file->getClientOriginalName();
         $path = $file->storeAs('excel', $nama_file);
-        Excel::import(new PajakRestoranImport(), $path);
+        Excel::import(new RestoranImport(), $path);
 
         Storage::delete($path);
-        return redirect('#')->with(['success'=>'Data Berhasil Diimport!']);
+        return redirect('restoran')->with(['success'=>'Data Berhasil Diimport!']);
 
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }
